@@ -47,8 +47,19 @@
     <script>
        let ducks = [];
 
-       async function getDucks() {
+       async function getAll() {
         let host = "http://localhost:8080";
+        try {
+          let response = await fetch(host + "/ducks");
+          if (response.status === 200) {
+            let data = await response.json();
+            ducks = data;
+          } else {
+            console.log(response);
+          }
+        } catch (error) {
+          console.log(error);
+        }
         //TODO
        }
 
